@@ -1,0 +1,21 @@
+# Virtual environment
+venv/
+.venv/
+
+# MLflow tracking (local runs)
+mlruns/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Model files in root (they should be in models/)
+model_*.joblib
+
+# OS files
+.DS_Store
+
+# IDE
+.idea/
+.vscode/

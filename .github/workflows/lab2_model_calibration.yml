@@ -1,0 +1,67 @@
+name: Lab2 - Model Calibration (Scheduled)
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run daily at midnight UTC
+  workflow_dispatch:  # Allow manual triggering
+
+defaults:
+  run:
+    working-directory: github_lab2
+
+jobs:
+  calibrate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Find Latest Model Timestamp
+        id: find_model
+        run: |
+          # Find the most recent model file
+          latest_model=$(ls -t models/model_*_gb_model.joblib 2>/dev/null | head -1)
+          if [ -z "$latest_model" ]; then
+            echo "No model found to calibrate"
+            exit 1
+          fi
+          # Extract timestamp from filename
+          timestamp=$(echo "$latest_model" | sed 's/models\/model_\(.*\)_gb_model.joblib/\1/')
+          echo "timestamp=$timestamp" >> $GITHUB_OUTPUT
+          echo "Found model with timestamp: $timestamp"
+
+      - name: Copy Model to Working Directory
+        run: |
+          timestamp=${{ steps.find_model.outputs.timestamp }}
+          cp models/model_${timestamp}_gb_model.joblib ./model_${timestamp}_gb_model.joblib
+
+      - name: Calibrate Model (Isotonic)
+        run: |
+          timestamp=${{ steps.find_model.outputs.timestamp }}
+          python ./src/calibrate_model.py --timestamp "$timestamp" --method isotonic
+
+      - name: Store Calibrated Model
+        run: |
+          timestamp=${{ steps.find_model.outputs.timestamp }}
+          cal_model="model_${timestamp}_cal_isotonic.joblib"
+          mv $cal_model models/$cal_model
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          timestamp=${{ steps.find_model.outputs.timestamp }}
+          git add models/ metrics/
+          git commit -m "Add calibrated model for ${timestamp}" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

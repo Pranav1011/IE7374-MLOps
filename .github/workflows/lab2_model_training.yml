@@ -1,0 +1,61 @@
+name: Lab2 - Model Training on Push
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'github_lab2/**'
+
+defaults:
+  run:
+    working-directory: github_lab2
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate and Store Timestamp
+        run: |
+          timestamp=$(date '+%Y%m%d%H%M%S')
+          echo "$timestamp" > timestamp.txt
+        id: timestamp
+
+      - name: Train Model
+        run: |
+          timestamp=$(cat timestamp.txt)
+          python ./src/train_model.py --timestamp "$timestamp"
+
+      - name: Evaluate Model and Log Metrics
+        run: |
+          timestamp=$(cat timestamp.txt)
+          python ./src/evaluate_model.py --timestamp "$timestamp"
+
+      - name: Store and Version the New Model
+        run: |
+          timestamp=$(cat timestamp.txt)
+          model_filename="model_${timestamp}_gb_model.joblib"
+          mv $model_filename models/$model_filename
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          timestamp=$(cat timestamp.txt)
+          git add metrics/ models/ data/
+          git commit -m "Add metrics and model from training run ${timestamp}" || echo "No changes to commit"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
