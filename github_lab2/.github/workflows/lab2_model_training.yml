@@ -1,9 +1,18 @@
-name: Model Training on Push to Main
+name: Lab2 - Model Training on Push
 
 on:
   push:
     branches:
       - main
+    paths:
+      - 'github_lab2/**'
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    working-directory: github_lab2
 
 jobs:
   train:
@@ -12,6 +21,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -27,14 +38,6 @@ jobs:
           echo "$timestamp" > timestamp.txt
         id: timestamp
 
-      - name: Check File Permissions
-        run: |
-          ls -l ./src/train_model.py
-
-      - name: Set File Permissions
-        run: |
-          chmod +x ./src/train_model.py
-
       - name: Train Model
         run: |
           timestamp=$(cat timestamp.txt)
@@ -44,25 +47,20 @@ jobs:
         run: |
           timestamp=$(cat timestamp.txt)
           python ./src/evaluate_model.py --timestamp "$timestamp"
-          metrics_filename="${timestamp}_metrics.json"
-          mv metrics/$metrics_filename $GITHUB_WORKSPACE/metrics/$metrics_filename
-        continue-on-error: false
 
       - name: Store and Version the New Model
         run: |
           timestamp=$(cat timestamp.txt)
           model_filename="model_${timestamp}_gb_model.joblib"
-          mv $model_filename $GITHUB_WORKSPACE/models/$model_filename
+          mv $model_filename models/$model_filename
 
       - name: Commit and Push Changes
         run: |
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           timestamp=$(cat timestamp.txt)
-          metrics_filename="metrics/${timestamp}_metrics.json"
-          model_filename="models/model_${timestamp}_gb_model.joblib"
-          git add $GITHUB_WORKSPACE/$metrics_filename $GITHUB_WORKSPACE/$model_filename data/
-          git commit -m "Add metrics and model from training run ${timestamp}"
+          git add metrics/ models/ data/
+          git commit -m "Add metrics and model from training run ${timestamp}" || echo "No changes to commit"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
