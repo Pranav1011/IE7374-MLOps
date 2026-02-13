@@ -11,7 +11,7 @@ __pycache__/
 *.pyo
 
 # Model files in root (they should be in models/)
-model_*.joblib
+/model_*.joblib
 
 # OS files
 .DS_Store
