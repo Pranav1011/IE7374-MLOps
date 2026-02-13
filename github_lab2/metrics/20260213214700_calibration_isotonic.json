@@ -1,0 +1,9 @@
+{
+    "method": "isotonic",
+    "uncalibrated_brier_score": 0.03203465504307217,
+    "calibrated_brier_score": 0.0008143075292645841,
+    "brier_improvement": 0.03122034751380759,
+    "uncalibrated_log_loss": 0.11176462526354289,
+    "calibrated_log_loss": 0.011474416339144599,
+    "log_loss_improvement": 0.10029020892439829
+}
