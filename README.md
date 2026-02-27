@@ -19,6 +19,15 @@ MLOps_Labs/
 │       ├── lab2_model_training.yml      # Lab 2: Triggers on push
 │       └── lab2_model_calibration.yml   # Lab 2: Scheduled calibration
 ├── fastapi_lab1/                        # Lab 1: FastAPI
+│   ├── src/
+│   │   ├── main.py
+│   │   ├── data.py
+│   │   ├── train.py
+│   │   └── predict.py
+│   ├── model/
+│   ├── assets/
+│   ├── requirements.txt
+│   └── README.md
 ├── github_lab2/                         # Lab 2: GitHub Actions
 │   ├── .github/workflows/               # Copy of workflows (for reference)
 │   ├── src/
@@ -26,12 +35,14 @@ MLOps_Labs/
 │   ├── models/
 │   ├── metrics/
 │   └── README.md
-├── airflow_lab2/                        # Lab 3: Airflow Pipeline
+├── airflow_lab3/                        # Lab 3: Airflow Pipeline
 │   ├── dags/
 │   │   ├── airflow_pipeline.py
 │   │   ├── src/
 │   │   └── model/
+│   ├── images/
 │   ├── docker-compose.yaml
+│   ├── requirements.txt
 │   └── README.md
 └── README.md                            # This file
 ```
@@ -52,7 +63,23 @@ Both locations contain the same workflow files, but only the ones at the repo ro
 
 **Location:** `fastapi_lab1/`
 
-Basic FastAPI application demonstrating REST API development.
+REST API for Wine classification using FastAPI:
+- Health check endpoint (`/`)
+- Prediction endpoint (`/predict`) for wine classification
+- Pre-trained ML model using sklearn Wine dataset
+
+### How to Run
+
+```bash
+cd fastapi_lab1
+pip install -r requirements.txt
+cd src
+python main.py
+```
+
+Access API at http://localhost:8000 (Swagger docs at `/docs`)
+
+See `fastapi_lab1/README.md` for detailed instructions.
 
 ---
 
@@ -79,7 +106,7 @@ See `github_lab2/README.md` for detailed instructions.
 
 ## Lab 3: Apache Airflow Pipeline
 
-**Location:** `airflow_lab2/`
+**Location:** `airflow_lab3/`
 
 ML pipeline orchestrated with Apache Airflow running in Docker:
 - Loads Wine dataset (sklearn built-in)
@@ -90,14 +117,14 @@ ML pipeline orchestrated with Apache Airflow running in Docker:
 ### How to Run
 
 ```bash
-cd airflow_lab2
+cd airflow_lab3
 docker compose up airflow-init
 docker compose up -d
 ```
 
 Access UI at http://localhost:8080 (login: `airflow` / `airflow`)
 
-See `airflow_lab2/README.md` for detailed instructions.
+See `airflow_lab3/README.md` for detailed instructions.
 
 ---
 
