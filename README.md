@@ -8,6 +8,7 @@ This repository contains lab assignments for the IE7374 MLOps course.
 |-----|-------|--------|
 | Lab 1 | FastAPI | Completed |
 | Lab 2 | GitHub Actions for ML Training & Calibration | Completed |
+| Lab 3 | Apache Airflow Pipeline | Completed |
 
 ## Repository Structure
 
@@ -24,6 +25,13 @@ MLOps_Labs/
 │   ├── data/
 │   ├── models/
 │   ├── metrics/
+│   └── README.md
+├── airflow_lab2/                        # Lab 3: Airflow Pipeline
+│   ├── dags/
+│   │   ├── airflow_pipeline.py
+│   │   ├── src/
+│   │   └── model/
+│   ├── docker-compose.yaml
 │   └── README.md
 └── README.md                            # This file
 ```
@@ -66,6 +74,30 @@ Automated ML pipeline using GitHub Actions for:
 | `lab2_model_calibration.yml` | Daily at midnight UTC / Manual | Calibrates the latest model |
 
 See `github_lab2/README.md` for detailed instructions.
+
+---
+
+## Lab 3: Apache Airflow Pipeline
+
+**Location:** `airflow_lab2/`
+
+ML pipeline orchestrated with Apache Airflow running in Docker:
+- Loads Wine dataset (sklearn built-in)
+- Preprocesses data with MinMaxScaler
+- Trains KNN classifier (finds optimal K via cross-validation)
+- Saves and loads model, applies elbow method
+
+### How to Run
+
+```bash
+cd airflow_lab2
+docker compose up airflow-init
+docker compose up -d
+```
+
+Access UI at http://localhost:8080 (login: `airflow` / `airflow`)
+
+See `airflow_lab2/README.md` for detailed instructions.
 
 ---
 
