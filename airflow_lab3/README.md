@@ -10,7 +10,7 @@ This project demonstrates an MLOps workflow orchestrated with **Apache Airflow**
 ## Directory Structure
 
 ```
-airflow_lab2/
+airflow_lab3/
 ├── docker-compose.yaml          # Airflow + Postgres + Redis + Celery services
 ├── .env                         # Sets AIRFLOW_IMAGE_NAME and AIRFLOW_UID
 ├── README.md                    # This file
@@ -35,7 +35,7 @@ airflow_lab2/
 
 1. Navigate to the lab directory:
 ```bash
-cd airflow_lab2
+cd airflow_lab3
 ```
 
 2. Initialize the Airflow database:
