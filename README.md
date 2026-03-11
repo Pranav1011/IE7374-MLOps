@@ -9,6 +9,7 @@ This repository contains lab assignments for the IE7374 MLOps course.
 | Lab 1 | FastAPI | Completed |
 | Lab 2 | GitHub Actions for ML Training & Calibration | Completed |
 | Lab 3 | Apache Airflow Pipeline | Completed |
+| Lab 4 | Docker Multi-stage Build | Completed |
 
 ## Repository Structure
 
@@ -42,6 +43,16 @@ MLOps_Labs/
 │   │   └── model/
 │   ├── images/
 │   ├── docker-compose.yaml
+│   ├── requirements.txt
+│   └── README.md
+├── docker_lab4/                         # Lab 4: Docker Multi-stage Build
+│   ├── src/
+│   │   ├── model_training.py
+│   │   ├── main.py
+│   │   ├── templates/
+│   │   └── statics/
+│   ├── Dockerfile
+│   ├── docker-compose.yml
 │   ├── requirements.txt
 │   └── README.md
 └── README.md                            # This file
@@ -125,6 +136,36 @@ docker compose up -d
 Access UI at http://localhost:8080 (login: `airflow` / `airflow`)
 
 See `airflow_lab3/README.md` for detailed instructions.
+
+---
+
+## Lab 4: Docker Multi-stage Build
+
+**Location:** `docker_lab4/`
+
+Containerized ML application using Docker multi-stage builds:
+- **Stage 1:** Train Gradient Boosting model on Wine dataset
+- **Stage 2:** Serve predictions via Flask API
+- Docker Compose for service orchestration
+
+### How to Run
+
+**Option 1: Dockerfile**
+```bash
+cd docker_lab4
+docker build -t wine-classifier .
+docker run -p 4000:4000 wine-classifier
+```
+
+**Option 2: Docker Compose**
+```bash
+cd docker_lab4
+docker compose up
+```
+
+Access UI at http://localhost:4000/predict
+
+See `docker_lab4/README.md` for detailed instructions.
 
 ---
 

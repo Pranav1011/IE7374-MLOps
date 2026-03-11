@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wine Classifier</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        h1 {
+            color: #5c4d7d;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.8rem;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+        .input-group.full-width {
+            grid-column: span 2;
+        }
+        label {
+            font-size: 0.8rem;
+            color: #555;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        input[type="number"] {
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        button {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+            border-radius: 12px;
+            text-align: center;
+            display: none;
+        }
+        .result.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        .result h2 {
+            color: #5c4d7d;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        .result p {
+            color: #666;
+            margin: 10px 0 0 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Wine Classifier</h1>
+        <p class="subtitle">Gradient Boosting Classifier - MLOps Lab 4</p>
+
+        <form id="predictionForm" class="form-grid">
+            <div class="input-group">
+                <label for="alcohol">Alcohol</label>
+                <input type="number" id="alcohol" step="0.01" placeholder="13.0" required>
+            </div>
+            <div class="input-group">
+                <label for="malic_acid">Malic Acid</label>
+                <input type="number" id="malic_acid" step="0.01" placeholder="2.0" required>
+            </div>
+            <div class="input-group">
+                <label for="ash">Ash</label>
+                <input type="number" id="ash" step="0.01" placeholder="2.3" required>
+            </div>
+            <div class="input-group">
+                <label for="alcalinity_of_ash">Alcalinity of Ash</label>
+                <input type="number" id="alcalinity_of_ash" step="0.01" placeholder="17.0" required>
+            </div>
+            <div class="input-group">
+                <label for="magnesium">Magnesium</label>
+                <input type="number" id="magnesium" step="0.01" placeholder="100.0" required>
+            </div>
+            <div class="input-group">
+                <label for="total_phenols">Total Phenols</label>
+                <input type="number" id="total_phenols" step="0.01" placeholder="2.5" required>
+            </div>
+            <div class="input-group">
+                <label for="flavanoids">Flavanoids</label>
+                <input type="number" id="flavanoids" step="0.01" placeholder="2.5" required>
+            </div>
+            <div class="input-group">
+                <label for="nonflavanoid_phenols">Nonflavanoid Phenols</label>
+                <input type="number" id="nonflavanoid_phenols" step="0.01" placeholder="0.3" required>
+            </div>
+            <div class="input-group">
+                <label for="proanthocyanins">Proanthocyanins</label>
+                <input type="number" id="proanthocyanins" step="0.01" placeholder="1.5" required>
+            </div>
+            <div class="input-group">
+                <label for="color_intensity">Color Intensity</label>
+                <input type="number" id="color_intensity" step="0.01" placeholder="5.0" required>
+            </div>
+            <div class="input-group">
+                <label for="hue">Hue</label>
+                <input type="number" id="hue" step="0.01" placeholder="1.0" required>
+            </div>
+            <div class="input-group">
+                <label for="od280_od315">OD280/OD315</label>
+                <input type="number" id="od280_od315" step="0.01" placeholder="3.0" required>
+            </div>
+            <div class="input-group full-width">
+                <label for="proline">Proline</label>
+                <input type="number" id="proline" step="0.01" placeholder="1000.0" required>
+            </div>
+            <button type="submit">Predict Wine Class</button>
+        </form>
+
+        <div class="result" id="resultArea">
+            <h2 id="predictedClass"></h2>
+            <p>Wine classification based on chemical analysis</p>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#predictionForm').on('submit', function(event) {
+                event.preventDefault();
+
+                var formData = {
+                    'alcohol': $('#alcohol').val(),
+                    'malic_acid': $('#malic_acid').val(),
+                    'ash': $('#ash').val(),
+                    'alcalinity_of_ash': $('#alcalinity_of_ash').val(),
+                    'magnesium': $('#magnesium').val(),
+                    'total_phenols': $('#total_phenols').val(),
+                    'flavanoids': $('#flavanoids').val(),
+                    'nonflavanoid_phenols': $('#nonflavanoid_phenols').val(),
+                    'proanthocyanins': $('#proanthocyanins').val(),
+                    'color_intensity': $('#color_intensity').val(),
+                    'hue': $('#hue').val(),
+                    'od280_od315': $('#od280_od315').val(),
+                    'proline': $('#proline').val()
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/predict',
+                    data: formData,
+                    dataType: 'json'
+                }).done(function(data) {
+                    $('#predictedClass').text('Predicted: ' + data.predicted_class);
+                    $('#resultArea').addClass('show');
+                }).fail(function() {
+                    alert('Error: Could not reach the prediction server.');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
