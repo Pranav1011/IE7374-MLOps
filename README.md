@@ -10,6 +10,7 @@ This repository contains lab assignments for the IE7374 MLOps course.
 | Lab 2 | GitHub Actions for ML Training & Calibration | Completed |
 | Lab 3 | Apache Airflow Pipeline | Completed |
 | Lab 4 | Docker Multi-stage Build | Completed |
+| Lab 5 | Streaming LM Data Pipeline | Completed |
 
 ## Repository Structure
 
@@ -54,6 +55,9 @@ MLOps_Labs/
 │   ├── Dockerfile
 │   ├── docker-compose.yml
 │   ├── requirements.txt
+│   └── README.md
+├── data_lab5/                           # Lab 5: Streaming LM Pipeline
+│   ├── Lab2.ipynb
 │   └── README.md
 └── README.md                            # This file
 ```
@@ -166,6 +170,27 @@ docker compose up
 Access UI at http://localhost:4000/predict
 
 See `docker_lab4/README.md` for detailed instructions.
+
+---
+
+## Lab 5: Streaming LM Data Pipeline
+
+**Location:** `data_lab5/`
+
+Streaming language modeling pipeline using Hugging Face Datasets and PyTorch:
+- Streams `wikitext-103-raw-v1` (103M tokens) without loading into RAM
+- GPT-2 tokenizer with lazy tokenization
+- Rolling buffer for 512-token fixed-length blocks
+- PyTorch `IterableDataset` + `DataLoader` (batch_size=16)
+
+### How to Run
+
+```bash
+cd data_lab5
+jupyter notebook Lab2.ipynb
+```
+
+See `data_lab5/README.md` for detailed instructions.
 
 ---
 
