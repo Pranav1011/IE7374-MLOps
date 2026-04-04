@@ -1,0 +1,46 @@
+/opt/anaconda3/lib/python3.12/site-packages/keras/src/layers/core/dense.py:95: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+[34m[1mwandb[0m: [33mWARNING[0m WandbCallback is deprecated and will be removed in a future release. Please use the WandbMetricsLogger, WandbModelCheckpoint, and WandbEvalCallback callbacks instead. See https://docs.wandb.ai/guides/integrations/keras for more information.
+Epoch 1/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m1s[0m 14ms/step - accuracy: 0.5704 - loss: 0.7784 - val_accuracy: 0.8713 - val_loss: 0.4429
+Epoch 2/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.8241 - loss: 0.4630 - val_accuracy: 0.9298 - val_loss: 0.2739
+Epoch 3/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.8945 - loss: 0.2974 - val_accuracy: 0.9415 - val_loss: 0.1941
+Epoch 4/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9246 - loss: 0.2303 - val_accuracy: 0.9415 - val_loss: 0.1531
+Epoch 5/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9246 - loss: 0.2112 - val_accuracy: 0.9415 - val_loss: 0.1298
+Epoch 6/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9271 - loss: 0.1771 - val_accuracy: 0.9474 - val_loss: 0.1135
+Epoch 7/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9322 - loss: 0.1723 - val_accuracy: 0.9649 - val_loss: 0.1032
+Epoch 8/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9497 - loss: 0.1529 - val_accuracy: 0.9649 - val_loss: 0.0952
+Epoch 9/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9472 - loss: 0.1341 - val_accuracy: 0.9708 - val_loss: 0.0877
+Epoch 10/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9623 - loss: 0.1245 - val_accuracy: 0.9766 - val_loss: 0.0815
+Epoch 11/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9673 - loss: 0.1146 - val_accuracy: 0.9766 - val_loss: 0.0788
+Epoch 12/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9548 - loss: 0.1128 - val_accuracy: 0.9708 - val_loss: 0.0772
+Epoch 13/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9523 - loss: 0.1120 - val_accuracy: 0.9708 - val_loss: 0.0734
+Epoch 14/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9673 - loss: 0.0928 - val_accuracy: 0.9708 - val_loss: 0.0700
+Epoch 15/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9799 - loss: 0.0983 - val_accuracy: 0.9649 - val_loss: 0.0690
+Epoch 16/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9749 - loss: 0.0869 - val_accuracy: 0.9649 - val_loss: 0.0681
+Epoch 17/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9648 - loss: 0.1088 - val_accuracy: 0.9708 - val_loss: 0.0680
+Epoch 18/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9648 - loss: 0.0908 - val_accuracy: 0.9766 - val_loss: 0.0651
+Epoch 19/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9799 - loss: 0.0753 - val_accuracy: 0.9766 - val_loss: 0.0662
+Epoch 20/20
+[1m13/13[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 3ms/step - accuracy: 0.9698 - loss: 0.0741 - val_accuracy: 0.9766 - val_loss: 0.0657
+[1m6/6[0m [32m━━━━━━━━━━━━━━━━━━━━[0m[37m[0m [1m0s[0m 6ms/step 
+Test accuracy = 0.9766
+Test error rate = 0.0234

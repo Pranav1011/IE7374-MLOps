@@ -1,0 +1,115 @@
+_wandb:
+    value:
+        cli_version: 0.25.1
+        e:
+            kpytv7ps5yveaqnhzzc4241ue85h2q7n:
+                apple:
+                    ecpuCores: 6
+                    gpuCores: 14
+                    memoryGb: 18
+                    name: Apple M3 Pro
+                    pcpuCores: 5
+                    ramTotalBytes: "19327352832"
+                    swapTotalBytes: "19327352832"
+                args:
+                    - -f
+                    - /private/var/folders/f6/yyj7_1cd08n0g390jxdxjpfc0000gn/T/tmpp7ahxmzx.json
+                    - '--HistoryManager.hist_file=:memory:'
+                cpu_count: 11
+                cpu_count_logical: 11
+                disk:
+                    /:
+                        total: "494384795648"
+                        used: "313764392960"
+                email: krovvidipranav3@gmail.com
+                executable: /opt/anaconda3/bin/python
+                git:
+                    commit: 2c432fae564e8a873aef6c75f54adc8dc9e897ac
+                    remote: https://github.com/Pranav1011/IE7374-MLOps.git
+                host: Pranavs-MacBook-Pro.local
+                memory:
+                    total: "19327352832"
+                os: macOS-15.6.1-arm64-arm-64bit
+                program: <python with no main file>
+                python: CPython 3.12.2
+                root: /Users/saipranavkrovvidi/Documents/Masters/Masters Sem 3-Spring 2026/MLOps/Labs/MLOps_Labs/experiment_tracking_lab6
+                startedAt: "2026-04-04T01:50:48.193430Z"
+                writerId: kpytv7ps5yveaqnhzzc4241ue85h2q7n
+        m: []
+        python_version: 3.12.2
+        t:
+            "1":
+                - 2
+                - 3
+                - 5
+                - 49
+                - 53
+                - 105
+            "2":
+                - 2
+                - 3
+                - 5
+                - 49
+                - 53
+                - 105
+            "3":
+                - 2
+                - 3
+                - 8
+                - 13
+                - 62
+            "4": 3.12.2
+            "5": 0.25.1
+            "8":
+                - 13
+            "10":
+                - 17
+            "12": 0.25.1
+            "13": darwin-arm64
+        visualize:
+            confusion_matrix:
+                panel_config:
+                    fieldSettings:
+                        Actual: Actual
+                        Predicted: Predicted
+                        nPredictions: nPredictions
+                    panelDefId: wandb/confusion_matrix/v1
+                    stringSettings:
+                        title: Confusion Matrix Curve
+                    transform:
+                        name: tableWithLeafColNames
+                    userQuery:
+                        queryFields:
+                            - args:
+                                - name: runSets
+                                  value: ${runSets}
+                              fields:
+                                - fields: []
+                                  name: id
+                                - fields: []
+                                  name: name
+                                - fields: []
+                                  name: _defaultColorIndex
+                                - args:
+                                    - name: tableKey
+                                      value: confusion_matrix_table
+                                  fields: []
+                                  name: summaryTable
+                              name: runSets
+                panel_type: Vega2
+batch_size:
+    value: 32
+dataset:
+    value: breast_cancer
+dropout:
+    value: 0.3
+epochs:
+    value: 20
+hidden_units:
+    value:
+        - 64
+        - 32
+learning_rate:
+    value: 0.001
+model_type:
+    value: keras_sequential

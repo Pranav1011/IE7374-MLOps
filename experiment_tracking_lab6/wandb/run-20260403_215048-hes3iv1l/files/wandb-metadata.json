@@ -1,0 +1,40 @@
+{
+  "os": "macOS-15.6.1-arm64-arm-64bit",
+  "python": "CPython 3.12.2",
+  "startedAt": "2026-04-04T01:50:48.193430Z",
+  "args": [
+    "-f",
+    "/private/var/folders/f6/yyj7_1cd08n0g390jxdxjpfc0000gn/T/tmpp7ahxmzx.json",
+    "--HistoryManager.hist_file=:memory:"
+  ],
+  "program": "<python with no main file>",
+  "git": {
+    "remote": "https://github.com/Pranav1011/IE7374-MLOps.git",
+    "commit": "2c432fae564e8a873aef6c75f54adc8dc9e897ac"
+  },
+  "email": "krovvidipranav3@gmail.com",
+  "root": "/Users/saipranavkrovvidi/Documents/Masters/Masters Sem 3-Spring 2026/MLOps/Labs/MLOps_Labs/experiment_tracking_lab6",
+  "host": "Pranavs-MacBook-Pro.local",
+  "executable": "/opt/anaconda3/bin/python",
+  "cpu_count": 11,
+  "cpu_count_logical": 11,
+  "disk": {
+    "/": {
+      "total": "494384795648",
+      "used": "313764392960"
+    }
+  },
+  "memory": {
+    "total": "19327352832"
+  },
+  "apple": {
+    "name": "Apple M3 Pro",
+    "ecpuCores": 6,
+    "pcpuCores": 5,
+    "gpuCores": 14,
+    "memoryGb": 18,
+    "swapTotalBytes": "19327352832",
+    "ramTotalBytes": "19327352832"
+  },
+  "writerId": "kpytv7ps5yveaqnhzzc4241ue85h2q7n"
+}

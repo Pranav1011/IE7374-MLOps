@@ -11,6 +11,7 @@ This repository contains lab assignments for the IE7374 MLOps course.
 | Lab 3 | Apache Airflow Pipeline | Completed |
 | Lab 4 | Docker Multi-stage Build | Completed |
 | Lab 5 | Streaming LM Data Pipeline | Completed |
+| Lab 6 | W&B Experiment Tracking | Completed |
 
 ## Repository Structure
 
@@ -58,6 +59,10 @@ MLOps_Labs/
 │   └── README.md
 ├── data_lab5/                           # Lab 5: Streaming LM Pipeline
 │   ├── Lab2.ipynb
+│   └── README.md
+├── experiment_tracking_lab6/             # Lab 6: W&B Experiment Tracking
+│   ├── Lab1.ipynb
+│   ├── wandb/                           # W&B run logs and metadata
 │   └── README.md
 └── README.md                            # This file
 ```
@@ -191,6 +196,31 @@ jupyter notebook Lab2.ipynb
 ```
 
 See `data_lab5/README.md` for detailed instructions.
+
+---
+
+## Lab 6: W&B Experiment Tracking
+
+**Location:** `experiment_tracking_lab6/`
+
+Experiment tracking with Weights & Biases (W&B):
+- Replaced XGBoost dermatology classifier with a **Keras Sequential neural network**
+- Used **Breast Cancer Wisconsin** dataset (sklearn) — 569 samples, 30 features, 2 classes
+- Updated W&B callback for Keras 3 compatibility (model saving disabled)
+- Logs training metrics, confusion matrix, and error rate to W&B
+- **Test Accuracy:** 97.66% | **Error Rate:** 2.34%
+
+### How to Run
+
+```bash
+cd experiment_tracking_lab6
+wandb login                    # Enter your W&B API key
+jupyter notebook Lab1.ipynb
+```
+
+Logs to the W&B project `Lab1-visualize-models`.
+
+See `experiment_tracking_lab6/README.md` for detailed instructions.
 
 ---
 
